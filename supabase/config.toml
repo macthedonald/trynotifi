@@ -1,0 +1,64 @@
+`1`[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+port = 54320
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://notifi.app"]
+jwt_expiry = 3600
+refresh_token_rotation_enabled = true
+security_update_password_require_reauthentication = true
+enable_manual_linking = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = true
+template_path = "./supabase/templates"
+
+[auth.sms]
+enable_signup = false
+enable_confirmations = false
+
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_CLIENT_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[auth.external.microsoft]
+enabled = true
+client_id = "env(MICROSOFT_CLIENT_ID)"
+secret = "env(MICROSOFT_CLIENT_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[storage]
+enabled = true
+port = 54323
+file_size_limit = "50MiB"
+upload_limit = "50MiB"
+
+[realtime]
+enabled = true
+port = 54324
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+
+[functions]
+verify_jwt = false
